@@ -29,7 +29,7 @@ type CatBreed struct {
 type Dog struct {
 	ID               int       `json:"id"`
 	BreedID          int       `json:"breed_id"`
-	Name             string    `json:"name"`
+	DogName          string    `json:"dog_name"`
 	Color            string    `json:"color"`
 	BreederID        int       `json:"breeder_id"`
 	DateOfBirth      time.Time `json:"date_of_birth"`
@@ -43,7 +43,7 @@ type Dog struct {
 type Cat struct {
 	ID               int       `json:"id"`
 	BreedID          int       `json:"breed_id"`
-	Name             string    `json:"name"`
+	CatName          string    `json:"cat_name"`
 	Color            string    `json:"color"`
 	BreederID        int       `json:"breeder_id"`
 	DateOfBirth      time.Time `json:"date_of_birth"`

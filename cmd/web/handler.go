@@ -18,3 +18,29 @@ func (app *application) CreateDogFromFactory(w http.ResponseWriter, r *http.Requ
 		return
 	}
 }
+
+func (app *application) CreateDogFromAbstractFactory(w http.ResponseWriter, r *http.Request) {
+	dog, err := pets.NewPetFromAbstractFactory("dog")
+	if err != nil {
+		http.Error(w, "Failed to create dog from abstract factory", http.StatusInternalServerError)
+		return
+	}
+	if err := json.NewEncoder(w).Encode(dog); err != nil {
+		http.Error(w, "Failed to encode dog", http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}
+
+func (app *application) CreateCatFromAbstractFactory(w http.ResponseWriter, r *http.Request) {
+	cat, err := pets.NewPetFromAbstractFactory("cat")
+	if err != nil {
+		http.Error(w, "Failed to create cat from abstract factory", http.StatusInternalServerError)
+		return
+	}
+	if err := json.NewEncoder(w).Encode(cat); err != nil {
+		http.Error(w, "Failed to encode cat", http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}
