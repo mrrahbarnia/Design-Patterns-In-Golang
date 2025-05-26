@@ -1,17 +1,35 @@
 package main
 
 import (
+	"database/sql"
 	"log"
 	"net/http"
 	"time"
 )
 
-type application struct{}
+type application struct {
+	config appConfig
+	db     *sql.DB
+}
+type appConfig struct {
+	dsn string
+}
 
 const port = ":4000"
 
 func main() {
-	app := application{}
+	cfg := &appConfig{
+		dsn: "postgres://admin:123456@localhost:5432/db?sslmode=disable",
+	}
+	db, err := initPostgresDB(cfg.dsn)
+	if err != nil {
+		log.Panic(err)
+	}
+	app := application{
+		config: *cfg,
+		db:     db,
+	}
+
 	srv := &http.Server{
 		Addr:              port,
 		Handler:           app.routes(),
