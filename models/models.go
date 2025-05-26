@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 type DogBreed struct {
 	ID               int    `json:"id"`
 	Breed            string `json:"breed"`
@@ -25,31 +27,31 @@ type CatBreed struct {
 }
 
 type Dog struct {
-	ID               int      `json:"id"`
-	BreedID          int      `json:"breed_id"`
-	Name             string   `json:"name"`
-	Color            string   `json:"color"`
-	BreederID        int      `json:"breeder_id"`
-	DateOfBirth      string   `json:"date_of_birth"`
-	SpayedOrNeutered bool     `json:"spayed_or_neutered"`
-	Description      string   `json:"description"`
-	Weight           int      `json:"weight"`
-	Breed            DogBreed `json:"breed"`
-	Breerder         Breeder  `json:"breeder"`
+	ID               int       `json:"id"`
+	BreedID          int       `json:"breed_id"`
+	Name             string    `json:"name"`
+	Color            string    `json:"color"`
+	BreederID        int       `json:"breeder_id"`
+	DateOfBirth      time.Time `json:"date_of_birth"`
+	SpayedOrNeutered bool      `json:"spayed_or_neutered"`
+	Description      string    `json:"description"`
+	Weight           int       `json:"weight"`
+	Breed            DogBreed  `json:"breed"`
+	Breerder         Breeder   `json:"breeder"`
 }
 
 type Cat struct {
-	ID               int      `json:"id"`
-	BreedID          int      `json:"breed_id"`
-	Name             string   `json:"name"`
-	Color            string   `json:"color"`
-	BreederID        int      `json:"breeder_id"`
-	DateOfBirth      string   `json:"date_of_birth"`
-	SpayedOrNeutered bool     `json:"spayed_or_neutered"`
-	Description      string   `json:"description"`
-	Weight           int      `json:"weight"`
-	Breed            DogBreed `json:"breed"`
-	Breerder         Breeder  `json:"breeder"`
+	ID               int       `json:"id"`
+	BreedID          int       `json:"breed_id"`
+	Name             string    `json:"name"`
+	Color            string    `json:"color"`
+	BreederID        int       `json:"breeder_id"`
+	DateOfBirth      time.Time `json:"date_of_birth"`
+	SpayedOrNeutered bool      `json:"spayed_or_neutered"`
+	Description      string    `json:"description"`
+	Weight           int       `json:"weight"`
+	Breed            DogBreed  `json:"breed"`
+	Breerder         Breeder   `json:"breeder"`
 }
 
 type Breeder struct {
