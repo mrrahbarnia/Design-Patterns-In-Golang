@@ -1,6 +1,27 @@
 package models
 
-import "time"
+import (
+	"database/sql"
+	"time"
+)
+
+var repo Repository
+
+type Models struct {
+	DogBreeds DogBreed
+}
+
+func New(conn *sql.DB) *Models {
+	if conn != nil {
+		repo = newPostgresRepo(conn)
+	} else {
+		repo = newTestRepo(nil)
+	}
+
+	return &Models{
+		DogBreeds: DogBreed{},
+	}
+}
 
 type DogBreed struct {
 	ID               int    `json:"id"`
@@ -12,6 +33,10 @@ type DogBreed struct {
 	Description      string `json:"description"`
 	AlternateNames   string `json:"alternate_names"`
 	GeographicOrigin string `json:"geographic_origin"`
+}
+
+func (d *DogBreed) All() ([]*DogBreed, error) {
+	return repo.AllDogBreeds()
 }
 
 type CatBreed struct {

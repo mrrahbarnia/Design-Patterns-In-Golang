@@ -15,10 +15,11 @@ func (app *application) routes() http.Handler {
 	mux.Use(middleware.Timeout(time.Second * 60))
 
 	mux.Route("/api/v1", func(r chi.Router) {
-		r.Get("/", app.CheckHealth)
+		r.Get("/health-check", app.CheckHealth)
 		r.Get("/dog-from-factory", app.CreateDogFromFactory)
 		r.Get("/dog-from-abstract-factory", app.CreateDogFromAbstractFactory)
 		r.Get("/cat-from-abstract-factory", app.CreateCatFromAbstractFactory)
+		r.Get("/dog-breads", app.GetDogBreads)
 
 	})
 

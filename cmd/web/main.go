@@ -1,15 +1,16 @@
 package main
 
 import (
-	"database/sql"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/mrrahbarnia/Design-Patterns-In-Golang/models"
 )
 
 type application struct {
 	config appConfig
-	db     *sql.DB
+	Models models.Models
 }
 type appConfig struct {
 	dsn string
@@ -27,7 +28,7 @@ func main() {
 	}
 	app := application{
 		config: *cfg,
-		db:     db,
+		Models: *models.New(db),
 	}
 
 	srv := &http.Server{

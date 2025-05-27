@@ -44,3 +44,16 @@ func (app *application) CreateCatFromAbstractFactory(w http.ResponseWriter, r *h
 	}
 	w.WriteHeader(http.StatusOK)
 }
+
+func (app *application) GetDogBreads(w http.ResponseWriter, r *http.Request) {
+	dogBreeds, err := app.Models.DogBreeds.All()
+	if err != nil {
+		http.Error(w, "Failed to get dog breeds", http.StatusInternalServerError)
+		return
+	}
+	if err := json.NewEncoder(w).Encode(dogBreeds); err != nil {
+		http.Error(w, "Failed to encode dog breeds", http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}
