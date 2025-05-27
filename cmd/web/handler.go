@@ -46,7 +46,7 @@ func (app *application) CreateCatFromAbstractFactory(w http.ResponseWriter, r *h
 }
 
 func (app *application) GetDogBreads(w http.ResponseWriter, r *http.Request) {
-	dogBreeds, err := app.Models.DogBreeds.All()
+	dogBreeds, err := app.App.Models.DogBreeds.All()
 	if err != nil {
 		http.Error(w, "Failed to get dog breeds", http.StatusInternalServerError)
 		return

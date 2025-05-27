@@ -5,12 +5,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/mrrahbarnia/Design-Patterns-In-Golang/models"
+	"github.com/mrrahbarnia/Design-Patterns-In-Golang/configuration"
 )
 
 type application struct {
 	config appConfig
-	Models models.Models
+	App    *configuration.Application
 }
 type appConfig struct {
 	dsn string
@@ -28,7 +28,7 @@ func main() {
 	}
 	app := application{
 		config: *cfg,
-		Models: *models.New(db),
+		App:    configuration.New(db),
 	}
 
 	srv := &http.Server{
