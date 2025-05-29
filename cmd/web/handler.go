@@ -57,3 +57,27 @@ func (app *application) GetDogBreads(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusOK)
 }
+
+func (app *application) CreateDogFromBuilder(w http.ResponseWriter, r *http.Request) {
+	p, err := pets.NewPetBuilder().
+		SetSpecies("dog").
+		SetBreed("Mixed breed").
+		SetMinWeight(10).
+		SetMaxWeight(20).
+		SetWeight(12).
+		SetDescription("This is a mixed breed dog").
+		SetLifeSpan(12).
+		SetGeographicOrigin("Iran").
+		SetAgeEstimated(true).
+		SetColor("Black and white").
+		Build()
+
+	if err != nil {
+		http.Error(w, "Cannot create dog from builder.", http.StatusBadRequest)
+		return
+	}
+	if err := json.NewEncoder(w).Encode(p); err != nil {
+		http.Error(w, "Cannot create dog from builder.", http.StatusBadRequest)
+	}
+	w.WriteHeader(http.StatusOK)
+}

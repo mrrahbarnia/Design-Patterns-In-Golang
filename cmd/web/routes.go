@@ -20,6 +20,7 @@ func (app *application) routes() http.Handler {
 		r.Get("/dog-from-abstract-factory", app.CreateDogFromAbstractFactory)
 		r.Get("/cat-from-abstract-factory", app.CreateCatFromAbstractFactory)
 		r.Get("/dog-breads", app.GetDogBreads)
+		r.Get("/dog-from-buidler", app.CreateDogFromBuilder)
 
 	})
 
